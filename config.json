@@ -1,0 +1,16 @@
+{
+  "coins": ["BTC", "ETH", "SOL", "HYPE", "ZEC", "xyz:SKHX"],
+  "host": "127.0.0.1",
+  "port": 8787,
+  "candle_interval": "1m",
+  "backfill_hours": 6,
+  "info_weight_per_minute": 800,
+  "open_time_weight_per_minute": 150,
+  "position_refresh_seconds": 45,
+  "idle_address_cooldown_seconds": 30,
+  "forget_idle_address_after_seconds": 3600,
+  "leaderboard_seed_top": 3000,
+  "leaderboard_refresh_seconds": 86400,
+  "state_file": "data/state.json",
+  "save_every_seconds": 30
+}

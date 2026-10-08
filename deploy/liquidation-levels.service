@@ -1,0 +1,17 @@
+# systemd unit — install with deploy/install.sh (runs as the invoking user, binds 127.0.0.1:8787)
+[Unit]
+Description=Hyperliquid liquidation levels dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/liquidation_levels
+ExecStart=%h/liquidation_levels/.venv/bin/python %h/liquidation_levels/server.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+# Environment=LIQ_HOST=0.0.0.0   # only if you don't use `tailscale serve` (see README)
+
+[Install]
+WantedBy=default.target

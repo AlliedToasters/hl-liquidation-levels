@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liquidation Levels</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="dot" id="conn-dot" title="connection"></span>
+    <h1>Hyperliquid Liquidation Levels</h1>
+    <span class="sub">real on-chain positions · lines start when a position is first seen</span>
+  </div>
+  <div class="controls" role="toolbar" aria-label="filters">
+    <label>Min size
+      <select id="min-notional">
+        <option value="0">all</option>
+        <option value="1000" selected>≥ $1k</option>
+        <option value="10000">≥ $10k</option>
+        <option value="100000">≥ $100k</option>
+        <option value="1000000">≥ $1M</option>
+      </select>
+    </label>
+    <label>Range
+      <select id="max-dist">
+        <option value="0.02">±2%</option>
+        <option value="0.05" selected>±5%</option>
+        <option value="0.10">±10%</option>
+        <option value="0.25">±25%</option>
+        <option value="1">all</option>
+      </select>
+    </label>
+    <label>Window
+      <select id="window">
+        <option value="30">30 min</option>
+        <option value="60">1 h</option>
+        <option value="120" selected>2 h</option>
+        <option value="360">6 h</option>
+      </select>
+    </label>
+    <div class="chips" id="tier-chips" aria-label="leverage tiers">
+      <button class="chip on" data-tier="max"><i class="sw sw-max"></i>max lev</button>
+      <button class="chip on" data-tier="mid"><i class="sw sw-mid"></i>mid lev</button>
+      <button class="chip on" data-tier="low"><i class="sw sw-low"></i>low lev</button>
+    </div>
+    <div class="chips" id="side-chips" aria-label="sides">
+      <button class="chip on" data-side="long">longs</button>
+      <button class="chip on" data-side="short">shorts</button>
+    </div>
+    <button class="chip on" id="toggle-maxpain" title="price bin holding the most liquidation notional below / above price">max pain</button>
+    <button class="chip on" id="toggle-mids" title="midpoint of the 5 min and 4 h high–low range (50% pullback)">mids</button>
+    <button class="chip" id="toggle-est" title="LuxAlgo-style estimate from volume spikes, the model the TradingView stream used; dotted">est. levels</button>
+    <button class="chip" id="toggle-cross" title="cross-margin liquidation prices depend on the whole account; drawn dashed">cross: on</button>
+    <button class="chip" id="toggle-table">table</button>
+    <button class="chip" id="toggle-theme" title="theme">☾</button>
+  </div>
+</header>
+
+<div id="banner" class="banner" role="status" hidden></div>
+<main id="panels" class="panels"></main>
+
+<footer class="statusbar">
+  <span id="stat-positions">–</span>
+  <span id="stat-holders">–</span>
+  <span id="stat-addr">–</span>
+  <span id="stat-calls">–</span>
+  <span id="stat-liqs" class="liq-ticker" aria-live="polite">–</span>
+  <span class="credit">design after <a href="https://linktr.ee/martypartymusic" target="_blank" rel="noopener">MartyParty</a>'s Crypto Liquidation Levels · data: Hyperliquid</span>
+</footer>
+
+<div id="tooltip" class="tooltip" hidden></div>
+<section id="table-view" class="table-view" hidden></section>
+
+<script src="/static/lightweight-charts.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
